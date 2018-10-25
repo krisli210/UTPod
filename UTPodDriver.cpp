@@ -11,7 +11,6 @@ You will want to do more complete testing.
 */
 #include <cstdlib>
 #include <iostream>
-#include "Song.h"
 #include "UtPod.h"
 
 using namespace std;
@@ -46,6 +45,9 @@ int main(int argc, char *argv[])
     cout << "add result = " << result << endl;
 
     t.showSongList();
+    cout << "\nShuffled:\n" ;
+    t.shuffle() ;
+    t.showSongList() ;
 
     result = t.removeSong(s2);
     cout << "delete result = " << result << endl;

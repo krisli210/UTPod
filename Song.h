@@ -2,34 +2,32 @@
 // Created by krisl on 10/23/2018.
 //
 using namespace std;
+
 #ifndef UTPOD_SONG_H
 #define UTPOD_SONG_H
-
+#include <string>
 
 
 class Song
 {
-public:
+private:
     string title ;
-    string artist;
+    string artist ;
     int size ;
 
-    Song() {
-        title = "" ;
-        artist = "" ;
-        size = 0 ;
-    }
-    Song(string artist, string title, int size) {
-        this->artist = artist ;
-        this->title = title ;
-        this->size = size ;
-    }
+public:
+    Song();
+    Song(string artist, string title, int size);
 
-    bool operator ==(Song const &rhs) {
-        return (title == rhs.title &&
-                artist == rhs.artist &&
-                size == rhs.size) ;
-    }
+    bool operator ==(Song const &rhs) ;
+
+    string getTitle() const ;
+    void setTitle(string title) ;
+    string getArtist() const ;
+    void setArtist(string artist) ;
+    int getSize() const ;
+    void setSize(int size) ;
+    ~Song();
 };
 
-#endif //UTPOD_SONG_H
+#endif

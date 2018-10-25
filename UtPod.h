@@ -25,14 +25,8 @@ private:
     int memSize;
 
 public:
-    UtPod() {
-        memSize = 0 ;
-        songs = NULL ;
-    }
-    UtPod(int size) {
-        this->memSize = size ;
-        this->songs = NULL ;
-    }
+    UtPod() ;
+    UtPod(int size) ;
 
     int addSong(Song const &s);
     int removeSong(Song const &s);
@@ -40,10 +34,9 @@ public:
     void shuffle();
     void showSongList();
     void sortSongList();
-
     int getTotalMemory();
-
     int getRemainingMemory();
+    int numSongs() ;
     ~UtPod();
 
 };
