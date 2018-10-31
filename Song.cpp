@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-#include "Song.h"
+#include "song.h"
 
 using namespace std;
 
@@ -57,6 +57,30 @@ bool Song::operator ==(Song const &rhs)
             size == rhs.size) ;
 }
 
+bool Song::operator >(Song const &rhs)
+{   //precondition: strings aren't the same
+    if (title == rhs.title) { //case for if titles are the same
+        if (artist == rhs.artist) //case for if artists are the same
+            return (size > rhs.size) ;
+        else
+            return (artist > rhs.artist) ;
+    }
+    else
+        return (title > rhs.title) ;
+}
+
+bool Song::operator <(Song const &rhs)
+{ //precondition: strings aren't the same
+    if (title == rhs.title) { //case for if titles are the same
+        if (artist == rhs.artist) //case for if artists are the same
+            return (size < rhs.size) ;
+        else
+            return (artist < rhs.artist) ;
+    }
+    else
+        return (title < rhs.title) ;
+
+}
 Song::~Song() {
 
 }

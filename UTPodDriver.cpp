@@ -24,13 +24,10 @@ int main(int argc, char *argv[])
     int result = t.addSong(s1);
     cout << "result = " << result << endl;
 
-    t.showSongList();
-
     Song s2("Beatles", "Hey Jude2", 5);
     result = t.addSong(s2);
     cout << "result = " << result << endl;
 
-    t.showSongList();
 
     Song s3("Beatles", "Hey Jude3", 6);
     result = t.addSong(s3);
@@ -42,41 +39,75 @@ int main(int argc, char *argv[])
 
     Song s5("Beatles", "Hey Jude5", 241);
     result = t.addSong(s5);
-    cout << "add result = " << result << endl;
+    cout << "result = " << result << endl;
 
+    Song ABBA("ABBA", "Dancing Queen" , 10) ;
+    Song ABBA2("ABBA", "ZZZZZ", 10) ;
+    Song zzTop("zzTop", "La Grange", 10) ;
+    Song zzTop2("zzTop", "ZZZZZ", 10) ;
+    Song Test("Test", "Hey Jude1", 5) ;
+    Song Test2("Test", "Hey Jude1", 6) ;
+    Song Test3("Test", "Hey Jude1", 512) ;
+
+    result = t.addSong(Test) ;
+    cout << "result = " << result << endl;
+    result = t.addSong(Test2) ;
+    cout << "result = " << result << endl;
+    result = t.addSong(Test3) ;
+    cout << "result = " << result << endl;
+    result = t.addSong(ABBA) ;
+    cout << "result = " << result << endl;
+    result = t.addSong(zzTop) ;
+    cout << "result = " << result << endl;
+    result = t.addSong(ABBA2) ;
+    cout << "result = " << result << endl;
+    result = t.addSong(zzTop2) ;
+    cout << "result = " << result << endl;
+
+    cout << "\n" ;
     t.showSongList();
-    cout << "\nShuffled:\n" ;
+
     t.shuffle() ;
+    cout << "Shuffled:\n" ;
     t.showSongList() ;
 
-    result = t.removeSong(s2);
-    cout << "delete result = " << result << endl;
+    t.sortSongList() ;
+    cout << "Sorted:\n" ;
+    t.showSongList() ;
 
-    result = t.removeSong(s3);
-    cout << "delete result = " << result << endl;
+    cout << "Remove zzTop and ABBA songs" << endl;
+    result = t.removeSong(ABBA) ;
+    cout << "result = " << result << endl;
+    result = t.removeSong(ABBA2) ;
+    cout << "result = " << result << endl;
+    result = t.removeSong(zzTop) ;
+    cout << "result = " << result << endl;
+    result = t.removeSong(zzTop2) ;
+    cout << "result = " << result << endl;
 
-    t.showSongList();
+    cout << "\n" ;
+    t.showSongList() ;
+    cout << "remaining memory = " << t.getRemainingMemory() << endl;
 
-    result = t.removeSong(s1);
-    cout << "delete result = " << result << endl;
+    cout << "Remove Beatles Songs" << endl ;
+    result = t.removeSong(s1) ;
+    cout << "result = " << result << endl;
+    result = t.removeSong(s2) ;
+    cout << "result = " << result << endl;
+    result = t.removeSong(s3) ;
+    cout << "result = " << result << endl;
+    result = t.removeSong(s4) ;
+    cout << "result = " << result << endl;
+    result = t.removeSong(s5) ;
+    cout << "result = " << result << endl;
 
-    result = t.removeSong(s5);
-    cout << "delete result = " << result << endl;
-
-    result = t.removeSong(s4);
-    cout << "delete result = " << result << endl;
-
-
-    t.showSongList();
-
-    result = t.addSong(s5);
-    cout << "add result = " << result << endl;
-
-    t.showSongList();
-    cout << "memory = " << t.getRemainingMemory() << endl;
+    cout << "\n" ;
+    t.showSongList() ;
+    cout << "remaining memory = " << t.getRemainingMemory() << endl;
 
     return 0 ;
-}//
+}
+//
 // Created by krisl on 10/23/2018.
 //
 

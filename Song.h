@@ -20,7 +20,8 @@ public:
     Song(string artist, string title, int size);
 
     bool operator ==(Song const &rhs) ;
-
+    bool operator >(Song const &rhs) ;
+    bool operator <(Song const &rhs) ;
     string getTitle() const ;
     void setTitle(string title) ;
     string getArtist() const ;

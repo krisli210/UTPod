@@ -3,7 +3,7 @@
 #include <cstdlib>
 #ifndef UTPOD_H
 #define UTPOD_H
-#include "Song.h"
+#include "song.h"
 
 //UtPod class declaration
 class UtPod
@@ -37,6 +37,7 @@ public:
     int getTotalMemory();
     int getRemainingMemory();
     int numSongs() ;
+    void clearMemory() ;
     ~UtPod();
 
 };
