@@ -18,11 +18,21 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     UtPod t(512);
+    cout << "Total memory is " << t.getTotalMemory() << "Mb"<< endl ;
+    cout << "Shuffling and sorting an empty list:" << endl ;
+    t.shuffle() ;
+    t.showSongList() ;
+    t.sortSongList() ;
+    t.showSongList() ;
 
-
+    cout << "Shuffling and sorting a list with one song:" << endl ;
     Song s1("Beatles", "Hey Jude1", 4);
     int result = t.addSong(s1);
     cout << "result = " << result << endl;
+    t.shuffle() ;
+    t.showSongList() ;
+    t.sortSongList() ;
+    t.showSongList() ;
 
     Song s2("Beatles", "Hey Jude2", 5);
     result = t.addSong(s2);
@@ -48,6 +58,7 @@ int main(int argc, char *argv[])
     Song Test("Test", "Hey Jude1", 5) ;
     Song Test2("Test", "Hey Jude1", 6) ;
     Song Test3("Test", "Hey Jude1", 512) ;
+    Song Duplicate("Duplicate", "Duplicate", 0) ;
 
     result = t.addSong(Test) ;
     cout << "result = " << result << endl;
@@ -63,9 +74,14 @@ int main(int argc, char *argv[])
     cout << "result = " << result << endl;
     result = t.addSong(zzTop2) ;
     cout << "result = " << result << endl;
+    result = t.addSong(Duplicate) ;
+    cout << "result = " << result << endl;
+    result = t.addSong(Duplicate) ;
+    cout << "result = " << result << endl;
 
     cout << "\n" ;
     t.showSongList();
+    cout << "Remaining memory is " << t.getRemainingMemory() << "Mb" << endl ;
 
     t.shuffle() ;
     cout << "Shuffled:\n" ;
@@ -87,9 +103,9 @@ int main(int argc, char *argv[])
 
     cout << "\n" ;
     t.showSongList() ;
-    cout << "remaining memory = " << t.getRemainingMemory() << endl;
-
-    cout << "Remove Beatles Songs" << endl ;
+    cout << "remaining memory = " << t.getRemainingMemory() << "Mb" << endl;
+    
+    cout << "\nRemove Beatles songs:" << endl ;
     result = t.removeSong(s1) ;
     cout << "result = " << result << endl;
     result = t.removeSong(s2) ;
@@ -103,7 +119,18 @@ int main(int argc, char *argv[])
 
     cout << "\n" ;
     t.showSongList() ;
-    cout << "remaining memory = " << t.getRemainingMemory() << endl;
+    cout << "remaining memory = " << t.getRemainingMemory() << "Mb" << endl;
+
+    cout << "\nTrying to remove a Beatles song again:" << endl ;
+    result = t.removeSong(s1) ;
+    cout << "result = " << result << endl;
+
+    cout << "\nRemove one duplicate" << endl;
+    result = t.removeSong(Duplicate) ;
+    cout << "result = " << result << endl;
+
+    cout << "\n" ;
+    t.showSongList() ;
 
     return 0 ;
 }

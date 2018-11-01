@@ -40,8 +40,8 @@ int UtPod::addSong(Song const &s)
     }
 
     else { // if full
-        cout << "Full, can't add '" << s.getTitle() << ", " << s.getArtist() << ", "
-        << s.getSize() << "'" << endl;
+        cout << "Not enough memory, can't add '" << s.getTitle() << ", " << s.getArtist() << ", "
+        << s.getSize() << "Mb'" << endl;
         return NO_MEMORY ;
     }
 }
@@ -65,13 +65,16 @@ int UtPod::getTotalMemory()
 
 int UtPod::removeSong(Song const &s)
 {
-    if (songs == NULL) // if empty returns not found
-        return NOT_FOUND ;
-
+    if (songs == NULL) {// if empty returns not found
+        cout << "Song that you tried to remove is not in the UtPod"  << endl ;
+        return NOT_FOUND;
+    }
     int index = findSong(s) ;
     //cout << index << endl ;
-    if (index == -1) // if findSong returns a -1 it means it traversed list without finding
-        return NOT_FOUND ;
+    if (index == -1) {// if findSong returns a -1 it means it traversed list without finding
+        cout << "Song that you tried to remove is not in the UtPod"  << endl ;
+        return NOT_FOUND;
+    }
 
     SongNode *trail = songs ;
     SongNode *p = songs ;
@@ -120,7 +123,7 @@ int UtPod::findSong(Song const &s)
 void UtPod::showSongList()
 {
     SongNode *p = songs ;
-    if (songs == NULL) {
+    if (songs == NULL) { // if list is empty
         cout << "Empty List" << endl ;
         return ;
     }
@@ -146,42 +149,44 @@ int UtPod::numSongs()
 
 void UtPod::shuffle()
 {
-    unsigned int currentTime = (unsigned)time(0) ;
-    //cout << currentTime << endl ;
-    srand(currentTime) ;
-    SongNode *p1, *p2 ;
-    Song temp ;
+    if (songs != NULL) { // if list isn't empty
+        unsigned int currentTime = (unsigned) time(0);
+        //cout << currentTime << endl ;
+        srand(currentTime);
+        SongNode *p1, *p2;
+        Song temp;
+        for (int i = 0; i < 20; i++) { // swap 20 times
+            p1 = p2 = songs;
+            int index1 = (rand() % numSongs()); //serve as indices that we need to switch
+            int index2 = (rand() % numSongs());
 
-    for (int i = 0 ; i < 20 ; i++)
-    { // swap 20 times
-        p1 = p2 = songs;
-        int index1 = (rand() % numSongs()) ; //serve as indices that we need to switch
-        int index2 = (rand() % numSongs()) ;
+            for (int j = 0; j < index1; j++) // set pointers to position
+                p1 = p1->next;
+            for (int j = 0; j < index2; j++)
+                p2 = p2->next;
 
-        for (int j = 0; j < index1; j++) // set pointers to position
-            p1 = p1->next;
-        for (int j = 0; j < index2; j++)
-            p2 = p2->next;
-
-        temp = p1->s; // temp = first song, first song = second song, second song = temp
-        p1->s = p2->s;
-        p2->s = temp;
+            temp = p1->s; // temp = first song, first song = second song, second song = temp
+            p1->s = p2->s;
+            p2->s = temp;
+        }
     }
 }
 
 void UtPod::sortSongList()
 {
-    SongNode *minp = songs ; //points to the minimum song
-    SongNode *compp = songs ; //points to comparator
-    Song temp ;
-    for (compp = songs ; compp != NULL ; compp = compp->next)
-    {
-        for (minp = compp->next ; minp != NULL ; minp = minp->next)
+    if (songs != NULL) { // if list isn't empty
+        SongNode *minp = songs; //points to the minimum song
+        SongNode *compp = songs; //points to comparator
+        Song temp;
+        for (compp = songs; compp != NULL; compp = compp->next)
         {
-            if (minp->s < compp->s) { //swap condition
-                temp = minp->s ;
-                minp->s = compp->s ;
-                compp->s = temp ;
+            for (minp = compp->next; minp != NULL; minp = minp->next)
+            {
+                if (minp->s < compp->s) { //swap condition
+                    temp = minp->s;
+                    minp->s = compp->s;
+                    compp->s = temp;
+                }
             }
         }
     }
